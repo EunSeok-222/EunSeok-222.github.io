@@ -53,25 +53,16 @@
 <main class="detail">
 
   <div class="detail__block">
-    <h2>개요</h2>
+    <p class="detail__eyebrow">01</p>
+    <h2>무엇을 풀려고 했나</h2>
     <img src="../assets/bookjob/hero.png" alt="bookjob 메인 화면" class="shot">
     <p class="shot-caption">라이브 서비스(www.bookjob.co.kr) 메인 화면 — 브랜드 컬러인 핑크(#EC4899) 기반</p>
-    <p>출판업계 종사자와 채용 담당자를 연결하는 구인·구직 서비스입니다. 실제 도메인(bookjob.co.kr)으로 운영 중이며, 배포·성능까지 GitHub Actions + Lighthouse CI로 관리합니다.</p>
-    <p>도메인 기반 폴더 구조(`main` · `job` · `Find` · `community` · `my` 등)로 화면·API·상태를 함께 관리하며, 팀원 2명이 도메인을 나눠 담당했습니다.</p>
+    <p>출판업계는 일반 채용 플랫폼에서 소외되어 있어, 업계 특화 구인·구직 채널과 소통 공간이 부족했습니다. bookjob은 채용 공고·구직 게시판과 자유게시판을 하나로 묶어, 출판인이 일자리도 찾고 서로 소통도 할 수 있는 공간을 만드는 걸 목표로 했습니다.</p>
+    <p>2인 팀이 도메인을 나눠 맡았고, 저는 <strong>메인·마이페이지·관리자·PWA·인증</strong>을 담당했습니다. 실제 도메인(bookjob.co.kr)으로 2025년 3월부터 지금까지 운영 중인 장기 프로젝트라, 기능 추가만큼이나 코드가 오래 유지보수 가능한 구조를 만드는 게 중요했습니다.</p>
   </div>
 
   <div class="detail__block">
-    <h2>담당 역할</h2>
-    <ul class="detail-list">
-      <li><strong>메인 페이지</strong> — 배너·팝업 등 프로모션 영역 구성, 설문조사 등 이벤트성 배너 노출 로직</li>
-      <li><strong>PWA</strong> — 홈 화면 설치, 매니페스트·아이콘 세트 구성(vite-plugin-pwa + Workbox)</li>
-      <li><strong>마이페이지</strong> — 지원 내역·스크랩 등 개인 활동 관리 화면</li>
-      <li><strong>관리자 페이지</strong> — 공고·콘텐츠 관리 화면</li>
-      <li><strong>로그인/인증</strong> — `ProtectedRoute` 기반 인증 라우트 가드로 비로그인 접근 제어</li>
-    </ul>
-  </div>
-
-  <div class="detail__block">
+    <p class="detail__eyebrow">02</p>
     <h2>핵심 기능</h2>
     <div class="feature-grid">
       <div class="feature-item">
@@ -94,6 +85,7 @@
   </div>
 
   <div class="detail__block">
+    <p class="detail__eyebrow">03</p>
     <h2>기술 스택</h2>
     <div class="detail-table-wrap">
       <table class="detail-table">
@@ -111,43 +103,57 @@
   </div>
 
   <div class="detail__block">
+    <p class="detail__eyebrow">04</p>
     <h2>막힌 지점과 해결</h2>
-    <div class="trouble-list">
-      <div class="trouble-card">
-        <div class="tc-title">관리자 페이지 — Custom Hook 리팩토링</div>
-        <div class="tc-row"><b>상황</b>컴포넌트 내부에 <code>useEffect</code>와 API 호출 로직이 혼재되어 코드가 길어지고, 페이지네이션·필터링 같은 반복 기능을 메뉴마다 새로 구현해야 하는 비효율이 있었음</div>
-        <div class="tc-row"><b>해결</b>UI 컴포넌트는 뷰만 담당하고 데이터·비즈니스 로직은 TanStack Query 기반 Custom Hook으로 캡슐화, <code>keepPreviousData</code> 옵션으로 페이지 전환 시 깜빡임 제거</div>
-        <div class="tc-row"><b>결과</b>컴포넌트 코드 라인 약 30% 단축, 다른 관리자 메뉴 추가 시 동일 훅 패턴 재사용으로 개발 생산성 향상</div>
+    <div class="tc2-list">
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">01</span><span class="tc2-title">관리자 메뉴가 늘어날 때마다 페이지네이션·필터링을 매번 새로 짬</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>관리자 페이지 컴포넌트 내부에 <code>useEffect</code>와 API 호출 로직이 뒤섞여 있어 코드가 계속 길어졌고, 페이지 전환 시 목록이 잠깐 비었다가 다시 채워지는 깜빡임이 눈에 띄었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>데이터 패칭·페이지네이션·필터링 로직이 UI 컴포넌트 안에 그대로 박혀 있어, 새 관리자 메뉴를 추가할 때마다 같은 로직을 복붙해야 했습니다. 또 페이지를 넘길 때 이전 데이터를 유지하지 않고 바로 로딩 상태로 비워버리는 기본 동작이 깜빡임의 원인이었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>UI 컴포넌트는 뷰만 담당하게 하고, 데이터·비즈니스 로직은 TanStack Query 기반 Custom Hook으로 캡슐화했습니다. <code>keepPreviousData</code> 옵션으로 페이지 전환 시 이전 데이터를 유지한 채 새 데이터로 교체해 깜빡임을 없앴습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>View와 데이터 로직을 분리하니 컴포넌트 코드가 약 30% 줄었고, 다른 관리자 메뉴를 추가할 때 같은 훅 패턴을 재사용할 수 있었습니다. 관심사 분리는 코드량뿐 아니라 <strong>다음 기능을 추가하는 속도</strong>에 더 크게 영향을 줬습니다.</p>
+        </div>
       </div>
-      <div class="trouble-card">
-        <div class="tc-title">디자인 시스템 & UI 테스트 — Storybook·Chromatic</div>
-        <div class="tc-row"><b>상황</b>팀 협업 시 코드 변경이 UI에 미치는 영향을 사전에 점검하지 못해 디자인 일관성이 흔들리고 사용자 경험에 영향을 줄 수 있었음</div>
-        <div class="tc-row"><b>해결</b>Storybook으로 컴포넌트 카탈로그 구축(상태별 테스트) + Chromatic 연동으로 빌드마다 시각 회귀 테스트(스냅샷 비교) 자동화</div>
-        <div class="tc-row"><b>결과</b>사이트 이탈률 38% → 28% 개선</div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">02</span><span class="tc2-title">코드 변경이 UI에 어떤 영향을 주는지 배포 전엔 알 수 없었음</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>2인 팀이지만 각자 다른 컴포넌트를 만지다 보니, 한쪽의 스타일 변경이 다른 화면의 버튼·카드 디자인을 미묘하게 깨뜨리는 일이 배포 후에야 발견되곤 했습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>공용 컴포넌트(Button·SearchBar 등)를 상태별(placeholder·size·width)로 눈으로 검증할 방법이 없었고, 코드 리뷰만으로는 실제 렌더링 결과까지 확인하기 어려웠습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>Storybook으로 공용 컴포넌트를 상태별 카탈로그로 만들고, Chromatic을 연동해 빌드마다 이전 스냅샷과 자동으로 비교(시각 회귀 테스트)하도록 했습니다. 변경된 UI가 있으면 PR에서 바로 Accepted/Deny로 검토할 수 있게 됐습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>Storybook·Chromatic 도입 이후 사이트 이탈률이 38% → 28%로 개선됐습니다. 디자인 일관성 문제가 실제 사용자 이탈로 이어지고 있었다는 뜻이었고, <strong>디자인 시스템은 협업 언어이자 지표 개선 수단</strong>이라는 걸 체감했습니다.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="detail__block">
-    <h2>배운 점</h2>
-    <div class="feature-grid">
-      <div class="feature-item">
-        <div class="f-title">관심사 분리의 가치</div>
-        <div class="f-desc">View와 데이터 로직을 분리하니 코드가 짧아지고 재사용성이 올라감 — Custom Hook 캡슐화가 유지보수와 협업 속도를 함께 끌어올림을 체감</div>
-      </div>
-      <div class="feature-item">
-        <div class="f-title">디자인 시스템 = 협업 언어</div>
-        <div class="f-desc">Storybook·Chromatic으로 UI 변경을 가시화하니 팀이 같은 기준으로 소통할 수 있었고, 이탈률 개선까지 이어짐</div>
-      </div>
-      <div class="feature-item">
-        <div class="f-title">사용자 경험 중심 사고</div>
-        <div class="f-desc">깜빡임 제거, 뷰 전환 기억, PWA 설치 흐름처럼 작은 디테일이 사용 경험을 좌우함을 배움 — '돌아가게'를 넘어 '편하게'를 설계</div>
-      </div>
-      <div class="feature-item">
-        <div class="f-title">지속 가능한 협업</div>
-        <div class="f-desc">장기 운영 프로젝트에서 브랜치 전략·커밋 컨벤션·리뷰 게이트가 코드 품질과 팀 신뢰를 만든다는 것을 직접 경험</div>
-      </div>
-    </div>
+    <p class="detail__eyebrow">05</p>
+    <h2>배운 점과 한계</h2>
+    <p><strong>가장 크게 남은 것</strong> — 깜빡임 제거, 뷰 전환 기억, PWA 설치 흐름처럼 작은 디테일이 사용 경험을 좌우한다는 걸 배웠습니다. '돌아가게'를 넘어 '편하게'를 설계하는 감각이 생겼습니다.</p>
+    <p><strong>다시 한다면</strong> — Custom Hook 패턴을 관리자 페이지에만 적용했는데, 프로젝트 초반부터 전체 도메인에 동일한 패턴을 세웠다면 리팩토링 없이 처음부터 일관된 구조로 갔을 것 같습니다.</p>
+    <p><strong>남은 한계</strong> — 장기 운영 프로젝트라 브랜치 전략·커밋 컨벤션·리뷰 게이트를 갖췄지만, 2인 팀이라 리뷰가 한 명에게 몰리는 구조적 한계는 여전히 남아있습니다.</p>
   </div>
 
 </main>

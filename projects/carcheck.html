@@ -51,16 +51,18 @@
 <main class="detail">
 
   <div class="detail__block">
-    <h2>개요</h2>
+    <p class="detail__eyebrow">01</p>
+    <h2>무엇을 풀려고 했나</h2>
     <img src="../assets/carcheck/train_sample.jpg" alt="학습 데이터 샘플" class="shot">
     <p class="shot-caption">YOLOv8n-seg 학습에 사용한 차량 손상 데이터셋 샘플</p>
-    <p>사고 차량 사진을 올리면 YOLOv8n-seg 커스텀 모델이 손상 부위·유형을 픽셀 단위로 감지합니다. 과거 수리 사례 DB로 예상 수리비를 추정한 뒤, 국내 자동차보험 할증 규정과 비교해 보험처리 vs 자비처리 중 어느 쪽이 유리한지 계산합니다. RAG 기반 LLM 챗봇이 근거를 붙여 결과를 설명해줍니다.</p>
-    <p>데이터 수집·전처리부터 YOLOv8 파인튜닝, RAG·LLM 상담 로직, Streamlit 앱까지 전 과정을 혼자 설계·구현했습니다.</p>
+    <p>사고가 나면 대부분 "이거 보험 처리하는 게 나을까, 그냥 자비로 고칠까"부터 고민합니다. 그런데 이 판단에는 손상 정도·예상 수리비·보험 할증액까지 다 따져봐야 해서, 막상 사고 현장에서는 감으로 결정하는 경우가 많습니다.</p>
+    <p>CarCheck은 사진 한 장으로 <strong>손상 탐지 → 수리비 추정 → 보험 할증 대비 손익 계산 → LLM 상담</strong>까지 이어지는 파이프라인을 만들어, 이 판단을 데이터 기반으로 바꾸는 걸 목표로 했습니다. 데이터 수집·전처리부터 YOLOv8 파인튜닝, RAG·LLM 상담 로직, Streamlit 앱까지 전 과정을 혼자 설계·구현했습니다.</p>
   </div>
 
   <div class="detail__block">
-    <h2>모델 학습 성능</h2>
-    <div class="shot-grid">
+    <p class="detail__eyebrow">02</p>
+    <h2>핵심 기능</h2>
+    <div class="shot-grid" style="margin-bottom:16px">
       <figure>
         <img src="../assets/carcheck/map_curve.png" alt="mAP 학습 곡선">
         <figcaption>mAP 학습 곡선</figcaption>
@@ -70,10 +72,6 @@
         <figcaption>Loss 학습 곡선</figcaption>
       </figure>
     </div>
-  </div>
-
-  <div class="detail__block">
-    <h2>핵심 기능</h2>
     <div class="feature-grid">
       <div class="feature-item">
         <div class="f-title">🔍 손상 탐지</div>
@@ -95,6 +93,7 @@
   </div>
 
   <div class="detail__block">
+    <p class="detail__eyebrow">03</p>
     <h2>기술 스택</h2>
     <div class="detail-table-wrap">
       <table class="detail-table">
@@ -110,42 +109,96 @@
   </div>
 
   <div class="detail__block">
-    <h2>트러블슈팅</h2>
-    <div class="detail-table-wrap">
-      <table class="detail-table">
-        <tr><th>문제</th><th>원인</th><th>해결</th></tr>
-        <tr>
-          <td>LLM 응답이 간헐적으로 실패</td>
-          <td>Groq의 무료 모델이 예고 없이 <code>decommissioned</code> 처리되어 특정 모델 호출이 죽는 경우 발생</td>
-          <td>모델명을 하드코딩하지 않고 <code>llama-3.3-70b-versatile → llama-3.1-8b-instant → llama3-8b-8192 → mixtral-8x7b-32768</code> 순으로 순차 재시도하고, 에러 메시지에 <code>decommissioned/model_not_found</code>가 포함될 때만 다음 모델로 넘어가도록 분기. 전 모델 실패 시 Gemini로 비상 전환</td>
-        </tr>
-        <tr>
-          <td>LLM이 완전히 응답 불가한 순간에도 서비스가 죽음</td>
-          <td>외부 API 의존이라 완전 장애 가능성 존재</td>
-          <td>Groq·Gemini 모두 실패하면 손상 분석·수리비·보험 손익 데이터를 규칙 기반 마크다운 템플릿으로 즉시 조합해 응답(<code>_fallback_report</code>)</td>
-        </tr>
-        <tr>
-          <td>탐지 클래스 불균형 — Scratched(긁힘)가 65% 편중</td>
-          <td>일부 손상 유형(찌그러짐·파손 등) 데이터가 적어 소수 클래스가 잘 검출되지 않음</td>
-          <td>AI Hub 데이터로 소수 클래스만 15~18배 확장해 재학습</td>
-        </tr>
-        <tr>
-          <td>Streamlit에서 업로드 이미지가 사라짐</td>
-          <td><code>session_state</code>에 PIL 이미지 객체를 그대로 저장해 rerun 시 객체가 깨짐</td>
-          <td>PIL 객체 대신 <code>bytes</code>로 저장해 재실행에도 유지되도록 수정</td>
-        </tr>
-        <tr>
-          <td>챗봇이 서비스 범위 밖 질문에도 답변</td>
-          <td>system prompt에 주제 제한이 없어 "점심 메뉴 추천" 같은 질문에도 응답</td>
-          <td>system prompt에 차량 손상·보험 상담 주제로 한정하는 규칙 추가</td>
-        </tr>
-        <tr>
-          <td>Colab 학습 세션 끊김으로 학습 유실</td>
-          <td>무료 Colab 세션이 장시간 학습 중 만료되어 진행 상황이 날아감</td>
-          <td>epoch별 체크포인트 콜백을 저장해 세션 재연결 시 자동으로 이어서 학습(resume)</td>
-        </tr>
-      </table>
+    <p class="detail__eyebrow">04</p>
+    <h2>막힌 지점과 해결</h2>
+    <div class="tc2-list">
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">01</span><span class="tc2-title">무료 LLM API가 예고 없이 죽고, 완전히 끊겨도 서비스는 살아있어야 함</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>같은 코드인데 LLM 상담 응답이 간헐적으로 실패했습니다. 특정 시점부터 계속 실패하는 패턴이었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>Groq의 무료 모델이 예고 없이 <code>decommissioned</code>(서비스 종료) 처리되면서, 하드코딩해둔 모델명 호출이 그대로 죽고 있었습니다. 무료 API에 기대는 개인 프로젝트 특성상, 모델 하나에 의존하면 언제든 서비스가 끊길 수 있다는 걸 뒤늦게 깨달았습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>모델명을 하드코딩하지 않고 <code>llama-3.3-70b-versatile → llama-3.1-8b-instant → llama3-8b-8192 → mixtral-8x7b-32768</code> 순으로 순차 재시도하도록 바꾸고, 에러 메시지에 <code>decommissioned</code>/<code>model_not_found</code>가 포함될 때만 다음 모델로 넘어가게 분기했습니다. 이 4개 모델이 전부 실패하면 Gemini로 비상 전환하고, <strong>그마저도 실패하면</strong> 손상 분석·수리비·보험 손익 데이터를 규칙 기반 마크다운 템플릿으로 즉시 조합해 응답하도록(<code>_fallback_report</code>) 만들었습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>외부 API에 기대는 기능은 "느려짐"이 아니라 "완전히 죽음"까지 가정해야 합니다. 최후의 fallback을 LLM 없는 규칙 기반 응답으로 만들어두니, 무료 API 3개가 동시에 막혀도 서비스 자체는 멈추지 않았습니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">02</span><span class="tc2-title">특정 손상 유형만 유독 잘 못 잡음</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>Scratched(긁힘)는 잘 잡히는데, 찌그러짐·파손 같은 다른 손상 유형은 실제 사진에서 자주 놓쳤습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>학습 데이터를 클래스별로 세어보니 Scratched가 전체의 65%를 차지하고 있었습니다. 모델 구조나 학습 방식의 문제가 아니라, <strong>데이터 자체가 한쪽으로 쏠려있던 것</strong>이 원인이었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>AI Hub의 공개 데이터로 소수 클래스만 골라 15~18배 확장한 뒤 재학습했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>탐지 성능이 떨어질 때 모델부터 의심하기 쉬운데, 먼저 클래스별 데이터 분포를 세어보는 게 더 빠른 진단이었습니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">03</span><span class="tc2-title">Streamlit에서 업로드한 사진이 갑자기 사라짐</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>사진을 업로드하고 다른 조작을 하면 방금 올린 이미지가 화면에서 사라지거나 깨졌습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>Streamlit은 사용자가 뭔가 조작할 때마다 스크립트 전체를 다시 실행(rerun)하는데, <code>session_state</code>에 PIL 이미지 객체를 그대로 저장해두고 있었습니다. rerun 사이에 그 객체 참조가 깨지는 경우가 있었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>PIL 객체 대신 원본 <code>bytes</code>로 저장하도록 바꿔, 재실행되더라도 항상 바이트에서 새로 이미지를 복원하게 했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>Streamlit처럼 매 상호작용마다 스크립트가 다시 도는 프레임워크에서는, 세션에 저장하는 값이 <strong>재실행에도 안전하게 재구성 가능한 형태(원시 바이트 등)</strong>인지를 항상 의심해야 합니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">04</span><span class="tc2-title">챗봇이 차량 상담과 무관한 질문에도 답변</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>테스트 중 "점심 메뉴 추천해줘" 같은 서비스와 무관한 질문에도 챗봇이 성실하게 답변하고 있었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>system prompt에 주제 제한이 없어서, LLM이 일반 어시스턴트처럼 모든 질문에 답하려 했습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>system prompt에 차량 손상·보험 상담 주제로 한정하는 규칙을 추가했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>LLM은 기본적으로 "뭐든 도와주려는" 방향으로 동작하기 때문에, 서비스 범위를 벗어난 질문을 걸러내는 건 별도로 명시하지 않으면 저절로 되지 않습니다.</p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="detail__block">
+    <p class="detail__eyebrow">05</p>
+    <h2>배운 점과 한계</h2>
+    <p><strong>가장 크게 남은 것</strong> — 혼자 기획부터 배포까지 진행하면서, 모델 성능만큼이나 "외부 의존성이 끊겼을 때 뭘 보여줄 것인가"를 설계하는 게 서비스 완성도에 크게 영향을 준다는 걸 배웠습니다.</p>
+    <p><strong>남은 한계</strong> — 수리비 추정은 공개된 공임 데이터 기반이라 실제 정비소·지역별 편차를 반영하지 못합니다. 보험 손익 계산도 일반적인 할증 규정을 기준으로 한 추정치라, 개인별 보험 조건(가입 등급, 특약 등)까지는 반영하지 않습니다.</p>
   </div>
 
 </main>

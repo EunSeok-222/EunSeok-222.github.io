@@ -51,29 +51,29 @@
 <main class="detail">
 
   <div class="detail__block">
-    <h2>개요</h2>
+    <p class="detail__eyebrow">01</p>
+    <h2>무엇을 풀려고 했나</h2>
     <img src="../assets/emoticon/result_hero.png" alt="생성 결과 예시" class="shot">
     <p class="shot-caption">손그림 스케치를 twemoji 스타일 동물 이모티콘으로 변환한 결과</p>
-    <p>Stable Diffusion v1.5의 UNet에 diffusers/PEFT 네이티브 LoRA를 파인튜닝하고, ControlNet(scribble)으로 손그림의 원본 구도를 유지하며 twemoji 스타일 동물 이모티콘을 생성합니다. 데이터셋 정제부터 M1 Mac(MPS)에서의 LoRA 학습, Streamlit 앱 구현까지 전부 혼자 진행했습니다.</p>
+    <p>이모티콘을 만들려면 보통 그림 실력이나 디자인 툴 사용법이 필요합니다. 저는 "누구나 대충 그린 낙서만으로도 완성도 있는 이모티콘을 가질 수 있으면 어떨까"에서 시작했습니다. 손그림의 서투른 구도는 그대로 살리되, 화풍만 일관된 twemoji 스타일로 바꿔주는 게 목표였습니다.</p>
+    <p>Stable Diffusion v1.5의 UNet에 LoRA를 파인튜닝하고 ControlNet(scribble)으로 원본 구도를 유지하는 방식을 택했습니다. 데이터셋 정제부터 M1 Mac(MPS)에서의 학습, Streamlit 앱 배포까지 전부 혼자 진행했습니다.</p>
   </div>
 
   <div class="detail__block">
-    <h2>학습 성능</h2>
+    <p class="detail__eyebrow">02</p>
+    <h2>구현 포인트</h2>
     <img src="../assets/emoticon/loss_avg.png" alt="LoRA 학습 loss 곡선" class="shot">
     <p class="shot-caption">Epoch별 평균 Loss 곡선</p>
-  </div>
-
-  <div class="detail__block">
-    <h2>구현 포인트</h2>
     <ul class="detail-list">
       <li><strong>손그림 전처리</strong> — 정방형 패딩 + 이진화(흑백)로 ControlNet에 최적화된 입력 생성</li>
       <li><strong>LoRA 파인튜닝</strong> — PEFT 네이티브 포맷으로 여러 epoch 학습, 최종적으로 epoch 7 채택</li>
-      <li><strong>Apple Silicon 대응</strong> — `torch.backends.mps` 자동 감지, `PYTORCH_ENABLE_MPS_FALLBACK=1`로 M1 환경 학습</li>
+      <li><strong>Apple Silicon 대응</strong> — <code>torch.backends.mps</code> 자동 감지, <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code>로 M1 환경 학습</li>
       <li><strong>학습 리포트</strong> — Streamlit 멀티페이지로 학습 곡선·EDA·가중치 분석·생성 품질 비교 제공</li>
     </ul>
   </div>
 
   <div class="detail__block">
+    <p class="detail__eyebrow">03</p>
     <h2>기술 스택</h2>
     <div class="detail-table-wrap">
       <table class="detail-table">
@@ -87,37 +87,96 @@
   </div>
 
   <div class="detail__block">
-    <h2>트러블슈팅</h2>
-    <div class="detail-table-wrap">
-      <table class="detail-table">
-        <tr><th>문제</th><th>원인</th><th>해결</th></tr>
-        <tr>
-          <td>학습 중 loss가 <code>nan</code>으로 발산</td>
-          <td>M1 Mac(MPS)에서 fp16(half precision)으로 LoRA를 학습하면 수치 불안정으로 loss가 nan이 됨</td>
-          <td>정밀도를 fp32로 강제 전환해 학습 안정화. GPU 메모리 여유가 없는 M1 환경 특성상 batch_size=1로 병행 조정</td>
-        </tr>
-        <tr>
-          <td>MPS에서 일부 연산 미지원 오류</td>
-          <td>PyTorch MPS 백엔드가 일부 연산자를 아직 구현하지 않아 런타임 에러 발생</td>
-          <td><code>PYTORCH_ENABLE_MPS_FALLBACK=1</code> 환경변수로 미지원 연산만 CPU로 자동 폴백하도록 처리</td>
-        </tr>
-        <tr>
-          <td>후반 epoch에서 과적합·붕괴 — 한 얼굴이 깨져 반복 생성</td>
-          <td>epoch를 늘릴수록 수치상 loss는 낮아지지만 시각 품질은 오히려 무너짐</td>
-          <td>수치 최저점(E6)이 아닌 시각 품질이 가장 좋은 E7을 채택, 데이터 5배 증강·dropout 0.1로 정규화</td>
-        </tr>
-        <tr>
-          <td>lr 1e-4에서 형체 붕괴 — 사람·동물 얼굴이 뒤섞임</td>
-          <td>학습률이 너무 높아 LoRA 가중치가 과도하게 갱신되며 원본 구도가 무너짐</td>
-          <td>lr을 10배 낮춰 1e-5→5e-6로 안정화</td>
-        </tr>
-        <tr>
-          <td>배포 후 OOM·스케줄러 IndexError·업로드 403</td>
-          <td>무료 배포 환경의 메모리 한도 초과, 스케줄러 설정 불일치, XSRF 보호로 업로드 차단</td>
-          <td>Hugging Face Spaces 16GB 사양으로 이전, DPMSolver로 스케줄러 교체, XSRF 비활성화</td>
-        </tr>
-      </table>
+    <p class="detail__eyebrow">04</p>
+    <h2>막힌 지점과 해결</h2>
+    <div class="tc2-list">
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">01</span><span class="tc2-title">loss는 계속 낮아지는데, 생성된 이미지는 한 얼굴이 깨져서 반복됨</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>학습 epoch를 늘릴수록 loss 그래프는 꾸준히 내려갔는데, 실제로 생성해보면 후반 epoch일수록 오히려 한 얼굴 패턴이 깨진 채 반복 생성되는 과적합 붕괴가 나타났습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>당연히 loss가 가장 낮은 마지막 epoch(E6 근처)가 제일 좋을 거라고 생각했는데, <strong>수치 지표와 시각 품질이 따로 놀고 있었습니다.</strong> loss는 학습 데이터에 대한 재구성 오차일 뿐이라, 데이터가 적은 상태에서 계속 학습하면 모델이 특정 패턴을 과도하게 외워버려도(과적합) loss 자체는 계속 낮게 나올 수 있었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>수치 최저점이 아니라 <strong>시각 품질이 가장 좋은 epoch(E7)를 직접 눈으로 비교해 채택</strong>했습니다. 근본적으로는 데이터를 5배 증강하고 dropout 0.1을 추가해 과적합 자체를 줄였습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>생성 모델에서는 loss가 낮다고 결과물이 좋다는 보장이 없습니다. <strong>지표가 좋은데 실사용이 나쁘면, 지표가 측정하는 대상 자체를 의심해야</strong> 한다는 걸 체감했습니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">02</span><span class="tc2-title">학습률을 조금만 올려도 사람·동물 얼굴이 뒤섞임</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>학습률(lr) 1e-4로 학습했더니 결과물에서 원본 손그림 구도가 무너지고, 사람 얼굴과 동물 얼굴 특징이 뒤섞인 이상한 이미지가 나왔습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>LoRA는 원본 모델 가중치에 작은 변화만 더하는 방식인데, lr이 높으면 그 변화량이 과도해져 ControlNet이 잡아주는 구도 정보를 압도해버립니다. 결과적으로 원본 형체가 거의 남지 않게 된 것이었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>lr을 10배 낮춰 1e-5→5e-6로 조정했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>LoRA처럼 "가볍게 얹는" 파인튜닝 방식일수록, 학습률이 조금만 높아도 원본 조건(ControlNet 구도)을 쉽게 뭉개버릴 수 있다는 걸 배웠습니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">03</span><span class="tc2-title">M1에서 fp16으로 학습하면 loss가 nan</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>학습 속도를 높이려 fp16(half precision)으로 돌렸더니 몇 스텝 지나지 않아 loss가 <code>nan</code>으로 발산했습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>M1 Mac의 MPS 백엔드는 fp16 연산에서 수치 안정성이 떨어져, 특정 연산에서 오버플로우가 나며 loss가 무너졌습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>정밀도를 fp32로 강제 전환하고, GPU 메모리 여유가 없는 M1 환경 특성상 <code>batch_size=1</code>로 병행 조정했습니다. 추가로 PyTorch MPS 백엔드가 아직 구현하지 않은 일부 연산자에서 런타임 에러가 났는데, <code>PYTORCH_ENABLE_MPS_FALLBACK=1</code> 환경변수로 미지원 연산만 CPU로 자동 폴백하도록 처리했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>fp16은 항상 "더 빠르고 가벼운 선택"이 아닙니다. 하드웨어·백엔드별로 수치 안정성이 다르므로, 속도보다 학습이 끝까지 도는 게 먼저라면 fp32부터 시작하는 게 안전했습니다.</p>
+        </div>
+      </div>
+
+      <div class="tc2-card">
+        <div class="tc2-head"><span class="tc2-num">04</span><span class="tc2-title">로컬에선 잘 되던 앱이 배포하자마자 OOM·에러 연발</span></div>
+        <div class="tc2-sec">
+          <div class="tc2-label">증상</div>
+          <p>로컬에서는 문제없이 돌아가던 앱이 무료 배포 환경에 올리자마자 메모리 부족(OOM), 스케줄러 IndexError, 이미지 업로드 403 에러가 연달아 터졌습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">원인</div>
+          <p>세 문제 모두 원인이 달랐습니다 — 무료 배포 환경의 메모리 한도 초과, 사용한 스케줄러 설정이 배포 환경 버전과 불일치, 그리고 XSRF 보호 설정이 업로드 요청을 차단하고 있었습니다.</p>
+        </div>
+        <div class="tc2-sec">
+          <div class="tc2-label">해결</div>
+          <p>Hugging Face Spaces 16GB 사양으로 이전하고, 스케줄러를 DPMSolver로 교체하고, XSRF 보호를 비활성화했습니다.</p>
+        </div>
+        <div class="tc2-learned">
+          <div class="tc2-label">배운 점</div>
+          <p>"로컬에서 됐다"는 배포 환경에서도 된다는 뜻이 아닙니다. 특히 무료 티어 배포는 메모리·라이브러리 버전 제약이 로컬과 다르다는 걸 배포 직전이 아니라 개발 중반부터 염두에 둬야 했습니다.</p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="detail__block">
+    <p class="detail__eyebrow">05</p>
+    <h2>배운 점과 한계</h2>
+    <p><strong>가장 크게 남은 것</strong> — 생성 모델은 정량 지표(loss)와 실제 품질이 어긋날 수 있다는 걸 직접 겪었습니다. 결국 사람이 눈으로 비교하는 과정을 학습 파이프라인 안에 넣어야 했습니다.</p>
+    <p><strong>남은 한계</strong> — twemoji 스타일 동물 이모티콘이라는 좁은 도메인에 맞춰 파인튜닝했기 때문에, 다른 화풍이나 사람 캐릭터로 확장하려면 재학습이 필요합니다. 또 무료 배포 환경(HF Spaces)에 의존하고 있어, 트래픽이 몰리면 응답 속도가 느려질 수 있습니다.</p>
   </div>
 
 </main>
