@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이은석 · AI Developer</title>
 <meta name="description" content="이은석 — AI 개발자 포트폴리오. LoRA 파인튜닝·RAG·LLM 프로젝트와 HajaCheck, bookjob, DopaCheck, CarCheck 등 프로젝트 소개.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,6 +15,7 @@
 <nav class="nav">
   <a href="#top" class="nav__brand">이은석</a>
   <div class="nav__links">
+    <a href="#about">소개</a>
     <a href="#projects">프로젝트</a>
     <a href="#contact">연락처</a>
     <a href="https://github.com/EunSeok-222" target="_blank" rel="noopener" class="nav__gh" aria-label="GitHub">
@@ -30,22 +34,79 @@
       HTML·CSS·JavaScript·TypeScript 기반 프론트엔드 경험을 바탕으로
       백엔드·AI 팀원들과 함께 상담·인증·관리자 페이지를 만들어왔고,
       지금은 Python으로 딥러닝·LLM 프로젝트를 직접 설계·구현하고 있습니다.
-      SQLD·정보처리산업기사를 보유하고 있습니다.
     </p>
 
     <div class="hero__badges">
       <span class="badge badge--cert">🎓 SQLD</span>
       <span class="badge badge--cert">🎓 정보처리산업기사</span>
+      <span class="badge badge--cert">🎓 전산응용기계제도기능사</span>
     </div>
 
-    <div class="hero__stack">
-      <span class="chip">Python</span>
-      <span class="chip">PyTorch</span>
-      <span class="chip">LoRA 파인튜닝</span>
-      <span class="chip">RAG</span>
-      <span class="chip">LLM</span>
-      <span class="chip">React</span>
-      <span class="chip">TypeScript</span>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stats-bar__item">
+      <div class="stats-bar__num">6</div>
+      <div class="stats-bar__label">완료 프로젝트</div>
+    </div>
+    <div class="stats-bar__item">
+      <div class="stats-bar__num">8인</div>
+      <div class="stats-bar__label">HajaCheck 팀 규모</div>
+    </div>
+    <div class="stats-bar__item">
+      <div class="stats-bar__num">0.803</div>
+      <div class="stats-bar__label">YT예측 모델 Accuracy</div>
+    </div>
+    <div class="stats-bar__item">
+      <div class="stats-bar__num">3</div>
+      <div class="stats-bar__label">보유 자격증</div>
+    </div>
+  </div>
+
+  <section id="about" class="section">
+    <h2 class="section__title">기술 스택</h2>
+    <p class="section__desc">팀 프로젝트와 개인 프로젝트를 진행하며 직접 사용한 기술들입니다.</p>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <span class="stack-group__label">Backend</span>
+        <div class="stack-group__chips">
+          <span class="chip">Spring Boot</span>
+          <span class="chip">STOMP</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Flask</span>
+          <span class="chip">MariaDB</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <span class="stack-group__label">AI / ML</span>
+        <div class="stack-group__chips">
+          <span class="chip">PyTorch</span>
+          <span class="chip">LoRA 파인튜닝</span>
+          <span class="chip">ControlNet</span>
+          <span class="chip">RAG</span>
+          <span class="chip">LLM</span>
+          <span class="chip">YOLOv8</span>
+          <span class="chip">scikit-learn</span>
+          <span class="chip">Hugging Face</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <span class="stack-group__label">Frontend</span>
+        <div class="stack-group__chips">
+          <span class="chip">React</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Vite</span>
+          <span class="chip">PWA</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <span class="stack-group__label">Data · Deploy</span>
+        <div class="stack-group__chips">
+          <span class="chip">Streamlit</span>
+          <span class="chip">Claude API</span>
+          <span class="chip">GitHub Pages</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -68,6 +129,7 @@
              data-href="projects/hajacheck.html">
           <div class="front-img" style="background-image:url('assets/hajacheck/hero.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
+          <span class="card__role-badge">풀스택 · RAG 챗봇 개발</span>
           <div class="card-face__bottom">
             <h3>HajaCheck</h3>
             <p>AI 기반 시설물 외관 하자 점검 플랫폼</p>
@@ -89,6 +151,7 @@
              data-href="projects/bookjob.html">
           <div class="front-img" style="background-image:url('assets/bookjob/hero.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
+          <span class="card__role-badge">프론트엔드 개발</span>
           <div class="card-face__bottom">
             <h3>bookjob</h3>
             <p>출판인을 위한 구인·구직 플랫폼</p>
@@ -110,6 +173,7 @@
              data-href="projects/dopacheck.html">
           <div class="front-img" style="background-image:url('assets/dopacheck/score.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
+          <span class="card__role-badge">풀스택 개발</span>
           <div class="card-face__bottom">
             <h3>DopaCheck</h3>
             <p>배달·디지털 소비를 점수화하는 도파민 체크 서비스</p>
@@ -140,6 +204,7 @@
              data-href="projects/carcheck.html">
           <div class="front-img" style="background-image:url('assets/carcheck/train_sample.jpg')"></div>
           <span class="card__tag">개인 프로젝트</span>
+          <span class="card__role-badge">AI 서비스 개발</span>
           <div class="card-face__bottom">
             <h3>CarCheck</h3>
             <p>차량 손상 AI 보험 상담 앱</p>
@@ -161,6 +226,7 @@
              data-href="projects/emoticon.html">
           <div class="front-img" style="background-image:url('assets/emoticon/hero.png')"></div>
           <span class="card__tag">개인 프로젝트</span>
+          <span class="card__role-badge">딥러닝 개발</span>
           <div class="card-face__bottom">
             <h3>손그림 → 이모티콘</h3>
             <p>SD + LoRA + ControlNet 파인튜닝</p>
@@ -182,6 +248,7 @@
              data-href="projects/youtube-trend.html">
           <div class="front-img" style="background-image:url('assets/youtube-trend/hero.png')"></div>
           <span class="card__tag">개인 프로젝트</span>
+          <span class="card__role-badge">머신러닝 개발</span>
           <div class="card-face__bottom">
             <h3>유튜브 트렌딩 예측</h3>
             <p>조회수 구간 예측 머신러닝</p>
@@ -194,6 +261,7 @@
   </section>
 
   <section id="contact" class="section section--contact">
+    <p class="contact__cta">함께 풀어볼 <span class="accent">문제</span>가 있다면<br>편하게 이야기 나누고 싶습니다.</p>
     <h2 class="section__title">연락처</h2>
     <p class="section__desc">궁금한 점이 있으면 편하게 연락 주세요.</p>
     <a href="mailto:eunseok114@gmail.com" class="contact__email" id="emailLink">eunseok114@gmail.com</a>
