@@ -406,7 +406,7 @@ a { color: inherit; text-decoration: none; }
   background-size: 22px 22px;
   opacity: .15; pointer-events: none;
 }
-.detail-hero__inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+.detail-hero__inner { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 
 /* ── 히어로 모션 유틸 (프로젝트별 SVG 연출에서 재사용) ── */
 .hero-motion {
@@ -477,7 +477,7 @@ a { color: inherit; text-decoration: none; }
 .btn--on-hero-ghost:hover { background: rgba(255,255,255,.14); border-color: #fff; }
 
 .detail {
-  max-width: 760px; margin: 0 auto;
+  max-width: 980px; margin: 0 auto;
   padding: clamp(48px, 8vw, 76px) clamp(20px, 6vw, 64px);
 }
 .detail__block { margin-bottom: 52px; }
@@ -534,6 +534,54 @@ a { color: inherit; text-decoration: none; }
 .trouble-card .tc-title { font-size: .94rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
 .trouble-card .tc-row { font-size: .86rem; color: var(--ink-soft); line-height: 1.6; margin-top: 4px; }
 .trouble-card .tc-row b { color: var(--proj, var(--accent)); font-weight: 700; margin-right: 6px; }
+
+/* Narrative detail blocks (번호 섹션 + 증상/원인/해결 + 코드 블록) */
+.detail__eyebrow {
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em; color: var(--proj, var(--accent));
+  margin-bottom: 6px;
+}
+
+.code-block {
+  background: #16161C; color: #E4E4E9; border-radius: var(--radius-sm);
+  padding: 14px 16px; overflow-x: auto; margin: 12px 0;
+  font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: .8rem; line-height: 1.65;
+}
+.code-block code { background: none; padding: 0; color: inherit; }
+:not(pre) > code {
+  background: color-mix(in srgb, var(--proj, var(--accent)) 8%, white);
+  color: var(--proj, var(--accent)); border-radius: 5px; padding: 1px 6px; font-size: .88em;
+  font-family: 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.tc2-list { display: flex; flex-direction: column; gap: 18px; }
+.tc2-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+.tc2-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.tc2-num {
+  flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--proj, var(--accent)); color: #fff;
+  font-size: .76rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+.tc2-title { font-size: 1rem; font-weight: 700; color: var(--ink); }
+.tc2-sec { margin-top: 12px; }
+.tc2-sec .tc2-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: .76rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 4px;
+}
+.tc2-sec .tc2-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--proj, var(--accent)); }
+.tc2-sec p { font-size: .88rem; color: var(--ink-soft); line-height: 1.7; }
+.tc2-sec p strong { color: var(--ink); }
+.tc2-learned {
+  margin-top: 14px; padding: 14px 16px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--proj, var(--accent)) 7%, white);
+  border: 1px solid color-mix(in srgb, var(--proj, var(--accent)) 20%, white);
+}
+.tc2-learned .tc2-label { color: var(--proj, var(--accent)); }
+.tc2-learned .tc2-label::before { display: none; }
+.tc2-learned p { font-size: .86rem; color: var(--ink-soft); line-height: 1.65; }
+.tc2-learned p strong { color: var(--ink); }
 
 /* Detail-page image gallery */
 .shot {
