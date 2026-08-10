@@ -211,8 +211,14 @@ a { color: inherit; text-decoration: none; }
 }
 .card-flip:hover, .card-flip:focus-visible {
   transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateY(-10px) scale(1.03);
+  border-color: color-mix(in srgb, var(--proj) 60%, transparent);
   box-shadow: 0 10px 20px color-mix(in srgb, var(--proj) 26%, transparent), 0 32px 56px color-mix(in srgb, var(--proj) 24%, transparent);
   outline: none;
+}
+:root[data-theme="dark"] .card-flip:hover,
+:root[data-theme="dark"] .card-flip:focus-visible {
+  border-color: color-mix(in srgb, var(--proj) 55%, white);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--proj) 45%, white 15%), 0 32px 64px color-mix(in srgb, var(--proj) 35%, white 10%);
 }
 .card-flip .front-img {
   position: absolute; inset: 0;
