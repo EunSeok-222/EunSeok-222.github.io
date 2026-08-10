@@ -1,3 +1,18 @@
+// 다크모드 토글
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}
+
 // 카드 스크롤 등장 애니메이션
 const cards = document.querySelectorAll('.card-tilt');
 if ('IntersectionObserver' in window && cards.length) {
