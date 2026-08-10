@@ -110,6 +110,46 @@
     </div>
   </div>
 
+  <div class="detail__block">
+    <h2>막힌 지점과 해결</h2>
+    <div class="trouble-list">
+      <div class="trouble-card">
+        <div class="tc-title">관리자 페이지 — Custom Hook 리팩토링</div>
+        <div class="tc-row"><b>상황</b>컴포넌트 내부에 <code>useEffect</code>와 API 호출 로직이 혼재되어 코드가 길어지고, 페이지네이션·필터링 같은 반복 기능을 메뉴마다 새로 구현해야 하는 비효율이 있었음</div>
+        <div class="tc-row"><b>해결</b>UI 컴포넌트는 뷰만 담당하고 데이터·비즈니스 로직은 TanStack Query 기반 Custom Hook으로 캡슐화, <code>keepPreviousData</code> 옵션으로 페이지 전환 시 깜빡임 제거</div>
+        <div class="tc-row"><b>결과</b>컴포넌트 코드 라인 약 30% 단축, 다른 관리자 메뉴 추가 시 동일 훅 패턴 재사용으로 개발 생산성 향상</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">디자인 시스템 & UI 테스트 — Storybook·Chromatic</div>
+        <div class="tc-row"><b>상황</b>팀 협업 시 코드 변경이 UI에 미치는 영향을 사전에 점검하지 못해 디자인 일관성이 흔들리고 사용자 경험에 영향을 줄 수 있었음</div>
+        <div class="tc-row"><b>해결</b>Storybook으로 컴포넌트 카탈로그 구축(상태별 테스트) + Chromatic 연동으로 빌드마다 시각 회귀 테스트(스냅샷 비교) 자동화</div>
+        <div class="tc-row"><b>결과</b>사이트 이탈률 38% → 28% 개선</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail__block">
+    <h2>배운 점</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="f-title">관심사 분리의 가치</div>
+        <div class="f-desc">View와 데이터 로직을 분리하니 코드가 짧아지고 재사용성이 올라감 — Custom Hook 캡슐화가 유지보수와 협업 속도를 함께 끌어올림을 체감</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">디자인 시스템 = 협업 언어</div>
+        <div class="f-desc">Storybook·Chromatic으로 UI 변경을 가시화하니 팀이 같은 기준으로 소통할 수 있었고, 이탈률 개선까지 이어짐</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">사용자 경험 중심 사고</div>
+        <div class="f-desc">깜빡임 제거, 뷰 전환 기억, PWA 설치 흐름처럼 작은 디테일이 사용 경험을 좌우함을 배움 — '돌아가게'를 넘어 '편하게'를 설계</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">지속 가능한 협업</div>
+        <div class="f-desc">장기 운영 프로젝트에서 브랜치 전략·커밋 컨벤션·리뷰 게이트가 코드 품질과 팀 신뢰를 만든다는 것을 직접 경험</div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <nav class="detail-nav">

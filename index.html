@@ -121,11 +121,12 @@
              tabindex="0" role="button" aria-label="HajaCheck 카드 열기"
              data-title="HajaCheck"
              data-tagline="사진을 올리면 하자를 찾고, 등급을 매기고, 보고서 초안까지 쓰는 AI 기반 시설물 외관 하자 점검 플랫폼."
+             data-desc="균열용 U-Net과 면적형 손상(박리박락·철근노출)용 YOLOv8이 하자를 탐지하고, 규칙 기반으로 A~E 등급을 매깁니다. 검수를 거친 결과는 LangChain 기반 LLM이 점검 보고서 초안과 법규 질의응답으로 이어갑니다."
              data-img="assets/hajacheck/hero.png"
              data-tag="팀 프로젝트"
              data-period="2026.07–08 · 8인 팀"
              data-role="&lt;strong&gt;담당&lt;/strong&gt; — 고객지원 개발·실시간 상담 오너, RAG 챗봇 파이프라인, STOMP 서버·인증·대기열"
-             data-stack="Spring Boot,STOMP,RAG"
+             data-stack="Spring Boot,FastAPI,LangChain,STOMP,PostgreSQL,Redis,Chroma,React"
              data-href="projects/hajacheck.html">
           <div class="front-img" style="background-image:url('assets/hajacheck/hero.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
@@ -143,11 +144,12 @@
              tabindex="0" role="button" aria-label="bookjob 카드 열기"
              data-title="bookjob"
              data-tagline="출판인을 위한 구인·구직 플랫폼. 공고 탐색·지원부터 마이페이지, 커뮤니티, PWA 설치까지 지원합니다."
+             data-desc="실제 도메인(bookjob.co.kr)으로 운영 중이며, 배포·성능까지 GitHub Actions + Lighthouse CI로 관리합니다. TanStack Query 기반 Custom Hook 패턴으로 관리자 페이지를 리팩토링해 코드량을 30% 줄였고, Storybook·Chromatic 시각 회귀 테스트로 이탈률을 38%→28%로 개선했습니다."
              data-img="assets/bookjob/hero.png"
              data-tag="팀 프로젝트"
              data-period="2025.03–2026.08 · 2인 팀"
              data-role="&lt;strong&gt;담당&lt;/strong&gt; — 메인 페이지(배너·팝업)·PWA·마이페이지·관리자 페이지·로그인/인증"
-             data-stack="React 19,Vite,PWA"
+             data-stack="React 19,Vite,Zustand,TanStack Query,Tailwind CSS,PWA,Storybook"
              data-href="projects/bookjob.html">
           <div class="front-img" style="background-image:url('assets/bookjob/hero.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
@@ -165,11 +167,12 @@
              tabindex="0" role="button" aria-label="DopaCheck 카드 열기"
              data-title="DopaCheck"
              data-tagline="배달 한 번, 스크롤 한 시간 — 내 도파민 소비를 숫자로 마주하는 서비스."
+             data-desc="배달 영수증 사진 한 장으로 AI가 지출·칼로리를 추론하고, SNS·게임 사용 시간을 시급 기준 기회비용으로 환산해 보여줍니다. 주간 도파민 점수(0~100)와 AI 맞춤 챌린지로 죄책감 대신 자각·개선을 유도합니다."
              data-img="assets/dopacheck/score.png"
              data-tag="팀 프로젝트"
              data-period="2026.06 · 6인 팀 · 7일"
              data-role="&lt;strong&gt;담당&lt;/strong&gt; — 배포 설정, 헤더·아바타 드롭다운 등 프론트엔드, 관리자 페이지, 시간 분석 페이지, Stitch UI"
-             data-stack="Flask,MariaDB,Claude API"
+             data-stack="Flask,MariaDB,Claude API,OAuth 2.0,Tailwind CSS,Cloudtype"
              data-href="projects/dopacheck.html">
           <div class="front-img" style="background-image:url('assets/dopacheck/score.png')"></div>
           <span class="card__tag">팀 프로젝트</span>
@@ -196,11 +199,12 @@
              tabindex="0" role="button" aria-label="CarCheck 카드 열기"
              data-title="CarCheck"
              data-tagline="차량 손상 사진 한 장으로 AI가 보험처리와 자비처리 중 무엇이 유리한지 계산해주는 상담 앱."
+             data-desc="YOLOv8n-seg로 긁힘·찌그러짐 등 손상 유형을 탐지하고, 수리비 공임 DB와 결합해 보험 처리·자비 처리 손익을 계산합니다. Groq API 다중 모델 순차 fallback + Gemini 비상 전환으로 LLM 상담이 끊기지 않도록 설계했습니다."
              data-img="assets/carcheck/train_sample.jpg"
              data-tag="개인 프로젝트"
              data-period="개인 프로젝트 · 1인 개발"
              data-role="&lt;strong&gt;범위&lt;/strong&gt; — 데이터 수집·전처리, YOLOv8n-seg 파인튜닝, RAG·LLM 상담 로직, Streamlit 앱 전체"
-             data-stack="YOLOv8,RAG,Streamlit"
+             data-stack="YOLOv8,Streamlit,LangChain,ChromaDB,Groq API,SQLite"
              data-href="projects/carcheck.html">
           <div class="front-img" style="background-image:url('assets/carcheck/train_sample.jpg')"></div>
           <span class="card__tag">개인 프로젝트</span>
@@ -218,11 +222,12 @@
              tabindex="0" role="button" aria-label="손그림 이모티콘 카드 열기"
              data-title="손그림 → 이모티콘"
              data-tagline="스케치북에 대충 그린 낙서를 AI가 twemoji 스타일 동물 이모티콘으로 바꿔주는 딥러닝 프로젝트."
+             data-desc="Stable Diffusion v1.5의 UNet에 diffusers/PEFT 네이티브 LoRA를 파인튜닝하고, ControlNet(scribble)으로 손그림의 원본 구도를 유지하며 이모티콘을 생성합니다. 데이터셋 정제부터 M1 Mac(MPS) 학습, Streamlit 앱까지 전부 혼자 진행했습니다."
              data-img="assets/emoticon/hero.png"
              data-tag="개인 프로젝트"
              data-period="개인 프로젝트 · 1인 개발"
              data-role="&lt;strong&gt;범위&lt;/strong&gt; — 데이터셋 정제, PEFT LoRA 학습(M1 MPS), ControlNet 파이프라인 구성, Streamlit 앱"
-             data-stack="LoRA,ControlNet,PyTorch"
+             data-stack="Stable Diffusion,ControlNet,LoRA,PyTorch,Streamlit"
              data-href="projects/emoticon.html">
           <div class="front-img" style="background-image:url('assets/emoticon/hero.png')"></div>
           <span class="card__tag">개인 프로젝트</span>
@@ -240,11 +245,12 @@
              tabindex="0" role="button" aria-label="유튜브 트렌딩 예측 카드 열기"
              data-title="유튜브 트렌딩 예측"
              data-tagline="한국 유튜브 트렌딩 영상 데이터로 영상 메타데이터만으로 조회수 구간을 예측하는 머신러닝 프로젝트."
+             data-desc="Kaggle 글로벌 트렌딩 데이터(113개국)에서 한국 데이터만 필터링해 좋아요 비율·업로드 시간대 등 11개 피처를 설계했습니다. 5개 모델을 비교해 최종 GradientBoosting을 채택했고, Streamlit으로 실시간 예측 웹앱까지 배포했습니다."
              data-img="assets/youtube-trend/hero.png"
              data-tag="개인 프로젝트"
              data-period="개인 프로젝트"
              data-role="&lt;strong&gt;성과&lt;/strong&gt; — 11개 피처 기반 GradientBoosting으로 Accuracy/F1 &lt;strong&gt;0.803&lt;/strong&gt; 달성"
-             data-stack="scikit-learn,GradientBoosting"
+             data-stack="Python,scikit-learn,GradientBoosting,pandas,Streamlit"
              data-href="projects/youtube-trend.html">
           <div class="front-img" style="background-image:url('assets/youtube-trend/hero.png')"></div>
           <span class="card__tag">개인 프로젝트</span>
@@ -292,6 +298,7 @@
     </div>
     <div class="lightbox__body">
       <div class="detail-hero__meta" id="lightboxMeta"></div>
+      <p class="lightbox__desc" id="lightboxDesc"></p>
       <p class="card__role-line" id="lightboxRole"></p>
       <div class="card__stack" id="lightboxStack"></div>
       <a href="#" class="btn btn--primary" id="lightboxCta">자세히 보기 →</a>

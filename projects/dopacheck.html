@@ -116,6 +116,35 @@
     </div>
   </div>
 
+  <div class="detail__block">
+    <h2>막힌 지점과 해결</h2>
+    <div class="trouble-list">
+      <div class="trouble-card">
+        <div class="tc-title">Supabase → MariaDB 전환</div>
+        <div class="tc-row"><b>상황</b>RLS·Supabase SDK 기반 코드가 자체 호스팅으로 전환한 신규 DB에서 전면 호환 불가 — 비용·제어권 확보를 위한 결정</div>
+        <div class="tc-row"><b>해결</b>RLS 대신 앱 레벨 <code>WHERE user_id=%s</code> 필터 + <code>(provider, provider_id)</code> upsert로 대체, 팀에 rebase 가이드 배포</div>
+        <div class="tc-row"><b>교훈</b>DB 전환은 쿼리 문법뿐 아니라 보안 모델(격리 방식)까지 함께 재설계해야 함</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">챌린지 참여 버튼 전부 실패 (HTTP 400)</div>
+        <div class="tc-row"><b>상황</b>스키마는 <code>CHAR(36) UUID</code>인데 코드가 <code>int(challenge_id)</code>로 변환을 시도해 전체 요청이 400</div>
+        <div class="tc-row"><b>해결</b>UUID 문자열을 그대로 사용하도록 수정하고 INSERT 검증 테스트 추가</div>
+        <div class="tc-row"><b>교훈</b>스키마 변경 시 운영 DB의 실제 상태까지 대조해야 함</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">동시 요청 시 커넥션 풀 고갈</div>
+        <div class="tc-row"><b>상황</b>PooledDB의 <code>blocking=True</code> 기본값 때문에 DB 커넥션 대기가 무한 행으로 이어짐</div>
+        <div class="tc-row"><b>해결</b><code>blocking=False</code> + 바운드 타임아웃 적용, 고갈 시 503으로 graceful하게 응답</div>
+        <div class="tc-row"><b>교훈</b>자원 경합 지점은 타임아웃·degradation 경로를 반드시 함께 설계해야 함</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail__block">
+    <h2>배운 점</h2>
+    <p>깃·DB·프론트·서버를 담당자별로 나눠 분담하니 이전보다 협업이 한결 원활했습니다. PRD 작성 등에서 AI 활용 역량이 한 단계 향상됨을 느꼈고, Supabase→MariaDB 전환과 커넥션 풀·UUID 정합성 트러블슈팅을 통해 실무형 디버깅·인프라 역량을 키웠습니다.</p>
+  </div>
+
 </main>
 
 <nav class="detail-nav">

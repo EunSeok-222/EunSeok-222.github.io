@@ -101,6 +101,21 @@
           <td>PyTorch MPS 백엔드가 일부 연산자를 아직 구현하지 않아 런타임 에러 발생</td>
           <td><code>PYTORCH_ENABLE_MPS_FALLBACK=1</code> 환경변수로 미지원 연산만 CPU로 자동 폴백하도록 처리</td>
         </tr>
+        <tr>
+          <td>후반 epoch에서 과적합·붕괴 — 한 얼굴이 깨져 반복 생성</td>
+          <td>epoch를 늘릴수록 수치상 loss는 낮아지지만 시각 품질은 오히려 무너짐</td>
+          <td>수치 최저점(E6)이 아닌 시각 품질이 가장 좋은 E7을 채택, 데이터 5배 증강·dropout 0.1로 정규화</td>
+        </tr>
+        <tr>
+          <td>lr 1e-4에서 형체 붕괴 — 사람·동물 얼굴이 뒤섞임</td>
+          <td>학습률이 너무 높아 LoRA 가중치가 과도하게 갱신되며 원본 구도가 무너짐</td>
+          <td>lr을 10배 낮춰 1e-5→5e-6로 안정화</td>
+        </tr>
+        <tr>
+          <td>배포 후 OOM·스케줄러 IndexError·업로드 403</td>
+          <td>무료 배포 환경의 메모리 한도 초과, 스케줄러 설정 불일치, XSRF 보호로 업로드 차단</td>
+          <td>Hugging Face Spaces 16GB 사양으로 이전, DPMSolver로 스케줄러 교체, XSRF 비활성화</td>
+        </tr>
       </table>
     </div>
   </div>

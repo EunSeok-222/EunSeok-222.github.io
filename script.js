@@ -62,6 +62,7 @@ function openLightbox(card) {
   document.getElementById('lightboxTitle').textContent = d.title;
   document.getElementById('lightboxTagline').textContent = d.tagline;
   document.getElementById('lightboxMeta').innerHTML = `<span class="meta-pill">${d.period}</span>`;
+  document.getElementById('lightboxDesc').textContent = d.desc || '';
   document.getElementById('lightboxRole').innerHTML = d.role;
   document.getElementById('lightboxStack').innerHTML = d.stack
     .split(',')

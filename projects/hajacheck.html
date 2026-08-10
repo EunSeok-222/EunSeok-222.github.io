@@ -124,6 +124,32 @@
     </div>
   </div>
 
+  <div class="detail__block">
+    <h2>막힌 지점과 해결</h2>
+    <div class="trouble-list">
+      <div class="trouble-card">
+        <div class="tc-title">상담 WebSocket 연결 실패 (404)</div>
+        <div class="tc-row"><b>상황</b>클라이언트는 <code>ws://host/ws/</code>(trailing slash)로 접속하는데 Spring엔 <code>/ws</code>만 등록돼 있어 MVC DispatcherServlet으로 폴백되며 404 발생</div>
+        <div class="tc-row"><b>해결</b>WebSocketConfig의 엔드포인트 등록을 trailing slash까지 포함하도록 수정</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">RAG 문서 임베딩 중 Cloudflare 504</div>
+        <div class="tc-row"><b>상황</b>문서 업로드·임베딩 시 CPU 연산 지연으로 응답이 지연되며 504 Gateway Timeout 발생</div>
+        <div class="tc-row"><b>해결</b>임베딩 처리를 비동기 백그라운드 태스크로 전환해 응답을 즉시 반환하도록 우회</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">RAG 콜드스타트 지연</div>
+        <div class="tc-row"><b>상황</b>FastAPI 기동 시점에 BAAI/bge-m3(2GB) 임베딩 모델을 그때서야 로드해 첫 요청이 크게 지연</div>
+        <div class="tc-row"><b>해결</b>서버 구동 시 백그라운드로 모델을 미리 워밍업해 콜드스타트 예방</div>
+      </div>
+      <div class="trouble-card">
+        <div class="tc-title">RAG 챗봇이 무관한 질문에도 출처를 붙임</div>
+        <div class="tc-row"><b>상황</b>법규와 무관한 질문("안녕")에도 유사도 top-k를 임계값 없이 반환해 엉뚱한 조문이 출처로 표시됨</div>
+        <div class="tc-row"><b>해결</b>LLM이 스스로 답변의 근거 여부(<code>grounded</code>)를 판정하게 하고, 근거가 없으면 "출처 없음"으로 라우팅</div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <nav class="detail-nav">
