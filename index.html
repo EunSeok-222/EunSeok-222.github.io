@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이은석 · AI Developer</title>
+<meta name="description" content="이은석 — AI 개발자 포트폴리오. LoRA 파인튜닝·RAG·LLM 프로젝트와 HajaCheck, bookjob, DopaCheck, CarCheck 등 프로젝트 소개.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#top" class="nav__brand">이은석</a>
+  <div class="nav__links">
+    <a href="#projects">프로젝트</a>
+    <a href="#contact">연락처</a>
+    <a href="https://github.com/EunSeok-222" target="_blank" rel="noopener" class="nav__gh" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38l-.01-1.49c-2.01.44-2.43-.97-2.43-.97-.33-.83-.8-1.05-.8-1.05-.66-.45.05-.44.05-.44.73.05 1.11.75 1.11.75.64 1.1 1.68.78 2.09.6.07-.47.25-.78.46-.96-1.6-.18-3.29-.8-3.29-3.56 0-.79.28-1.43.75-1.94-.08-.18-.32-.92.07-1.92 0 0 .61-.2 2 .74a6.9 6.9 0 0 1 3.64 0c1.39-.94 2-.74 2-.74.39 1 .15 1.74.07 1.92.47.51.75 1.15.75 1.94 0 2.77-1.69 3.38-3.3 3.56.26.22.49.66.49 1.33l-.01 1.97c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="top" class="hero">
+    <p class="hero__eyebrow">AI Developer</p>
+    <h1 class="hero__title">AI로 문제를<br><span class="accent">정확하게</span> 풀어내는<br>이은석입니다.</h1>
+    <p class="hero__lead">
+      LoRA 파인튜닝·딥러닝·LLM·RAG를 직접 설계·구현하는 AI 개발자입니다.
+      HTML·CSS·JavaScript·TypeScript 기반 프론트엔드 경험을 바탕으로
+      백엔드·AI 팀원들과 함께 상담·인증·관리자 페이지를 만들어왔고,
+      지금은 Python으로 딥러닝·LLM 프로젝트를 직접 설계·구현하고 있습니다.
+      SQLD·정보처리산업기사를 보유하고 있습니다.
+    </p>
+
+    <div class="hero__badges">
+      <span class="badge badge--cert">🎓 SQLD</span>
+      <span class="badge badge--cert">🎓 정보처리산업기사</span>
+    </div>
+
+    <div class="hero__stack">
+      <span class="chip">Python</span>
+      <span class="chip">PyTorch</span>
+      <span class="chip">LoRA 파인튜닝</span>
+      <span class="chip">RAG</span>
+      <span class="chip">LLM</span>
+      <span class="chip">React</span>
+      <span class="chip">TypeScript</span>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <h2 class="section__title">팀 프로젝트</h2>
+    <p class="section__desc">AI 심화 과정에서 진행한 팀 프로젝트입니다. 카드를 누르면 상세 내용을 볼 수 있어요.</p>
+
+    <div class="cards">
+
+      <div class="card-tilt" style="--proj:#18181B">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="HajaCheck 카드 열기"
+             data-title="HajaCheck"
+             data-tagline="사진을 올리면 하자를 찾고, 등급을 매기고, 보고서 초안까지 쓰는 AI 기반 시설물 외관 하자 점검 플랫폼."
+             data-img="assets/hajacheck/hero.png"
+             data-tag="팀 프로젝트"
+             data-period="2026.07–08 · 8인 팀"
+             data-role="&lt;strong&gt;담당&lt;/strong&gt; — 고객지원 개발·실시간 상담 오너, RAG 챗봇 파이프라인, STOMP 서버·인증·대기열"
+             data-stack="Spring Boot,STOMP,RAG"
+             data-href="projects/hajacheck.html">
+          <div class="front-img" style="background-image:url('assets/hajacheck/hero.png')"></div>
+          <span class="card__tag">팀 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>HajaCheck</h3>
+            <p>AI 기반 시설물 외관 하자 점검 플랫폼</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+      <div class="card-tilt" style="--proj:#EC4899">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="bookjob 카드 열기"
+             data-title="bookjob"
+             data-tagline="출판인을 위한 구인·구직 플랫폼. 공고 탐색·지원부터 마이페이지, 커뮤니티, PWA 설치까지 지원합니다."
+             data-img="assets/bookjob/hero.png"
+             data-tag="팀 프로젝트"
+             data-period="2025.03–2026.08 · 2인 팀"
+             data-role="&lt;strong&gt;담당&lt;/strong&gt; — 메인 페이지(배너·팝업)·PWA·마이페이지·관리자 페이지·로그인/인증"
+             data-stack="React 19,Vite,PWA"
+             data-href="projects/bookjob.html">
+          <div class="front-img" style="background-image:url('assets/bookjob/hero.png')"></div>
+          <span class="card__tag">팀 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>bookjob</h3>
+            <p>출판인을 위한 구인·구직 플랫폼</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+      <div class="card-tilt" style="--proj:#6B5BFF">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="DopaCheck 카드 열기"
+             data-title="DopaCheck"
+             data-tagline="배달 한 번, 스크롤 한 시간 — 내 도파민 소비를 숫자로 마주하는 서비스."
+             data-img="assets/dopacheck/score.png"
+             data-tag="팀 프로젝트"
+             data-period="2026.06 · 6인 팀 · 7일"
+             data-role="&lt;strong&gt;담당&lt;/strong&gt; — 배포 설정, 헤더·아바타 드롭다운 등 프론트엔드, 관리자 페이지, 시간 분석 페이지, Stitch UI"
+             data-stack="Flask,MariaDB,Claude API"
+             data-href="projects/dopacheck.html">
+          <div class="front-img" style="background-image:url('assets/dopacheck/score.png')"></div>
+          <span class="card__tag">팀 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>DopaCheck</h3>
+            <p>배달·디지털 소비를 점수화하는 도파민 체크 서비스</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">개인 프로젝트</h2>
+    <p class="section__desc">데이터 수집부터 모델 학습, 배포까지 혼자 진행한 AI/ML 프로젝트입니다.</p>
+
+    <div class="cards">
+
+      <div class="card-tilt" style="--proj:#2563EB">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="CarCheck 카드 열기"
+             data-title="CarCheck"
+             data-tagline="차량 손상 사진 한 장으로 AI가 보험처리와 자비처리 중 무엇이 유리한지 계산해주는 상담 앱."
+             data-img="assets/carcheck/train_sample.jpg"
+             data-tag="개인 프로젝트"
+             data-period="개인 프로젝트 · 1인 개발"
+             data-role="&lt;strong&gt;범위&lt;/strong&gt; — 데이터 수집·전처리, YOLOv8n-seg 파인튜닝, RAG·LLM 상담 로직, Streamlit 앱 전체"
+             data-stack="YOLOv8,RAG,Streamlit"
+             data-href="projects/carcheck.html">
+          <div class="front-img" style="background-image:url('assets/carcheck/train_sample.jpg')"></div>
+          <span class="card__tag">개인 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>CarCheck</h3>
+            <p>차량 손상 AI 보험 상담 앱</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+      <div class="card-tilt" style="--proj:#FFB4C2">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="손그림 이모티콘 카드 열기"
+             data-title="손그림 → 이모티콘"
+             data-tagline="스케치북에 대충 그린 낙서를 AI가 twemoji 스타일 동물 이모티콘으로 바꿔주는 딥러닝 프로젝트."
+             data-img="assets/emoticon/hero.png"
+             data-tag="개인 프로젝트"
+             data-period="개인 프로젝트 · 1인 개발"
+             data-role="&lt;strong&gt;범위&lt;/strong&gt; — 데이터셋 정제, PEFT LoRA 학습(M1 MPS), ControlNet 파이프라인 구성, Streamlit 앱"
+             data-stack="LoRA,ControlNet,PyTorch"
+             data-href="projects/emoticon.html">
+          <div class="front-img" style="background-image:url('assets/emoticon/hero.png')"></div>
+          <span class="card__tag">개인 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>손그림 → 이모티콘</h3>
+            <p>SD + LoRA + ControlNet 파인튜닝</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+      <div class="card-tilt" style="--proj:#FF4B4B">
+        <div class="card-flip"
+             tabindex="0" role="button" aria-label="유튜브 트렌딩 예측 카드 열기"
+             data-title="유튜브 트렌딩 예측"
+             data-tagline="한국 유튜브 트렌딩 영상 데이터로 영상 메타데이터만으로 조회수 구간을 예측하는 머신러닝 프로젝트."
+             data-img="assets/youtube-trend/hero.png"
+             data-tag="개인 프로젝트"
+             data-period="개인 프로젝트"
+             data-role="&lt;strong&gt;성과&lt;/strong&gt; — 11개 피처 기반 GradientBoosting으로 Accuracy/F1 &lt;strong&gt;0.803&lt;/strong&gt; 달성"
+             data-stack="scikit-learn,GradientBoosting"
+             data-href="projects/youtube-trend.html">
+          <div class="front-img" style="background-image:url('assets/youtube-trend/hero.png')"></div>
+          <span class="card__tag">개인 프로젝트</span>
+          <div class="card-face__bottom">
+            <h3>유튜브 트렌딩 예측</h3>
+            <p>조회수 구간 예측 머신러닝</p>
+          </div>
+          <span class="card-flip__hint">눌러서 열기 ↗</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="section section--contact">
+    <h2 class="section__title">연락처</h2>
+    <p class="section__desc">궁금한 점이 있으면 편하게 연락 주세요.</p>
+    <a href="mailto:eunseok114@gmail.com" class="contact__email" id="emailLink">eunseok114@gmail.com</a>
+    <div class="contact__actions">
+      <button class="btn btn--copy" id="copyBtn" type="button">이메일 복사</button>
+      <a href="https://github.com/EunSeok-222" target="_blank" rel="noopener" class="btn btn--primary">GitHub ↗</a>
+      <a href="https://velog.io/@eunseok222/posts" target="_blank" rel="noopener" class="btn btn--primary">블로그 ↗</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 이은석. Built with plain HTML/CSS/JS.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+  <div class="lightbox__panel" id="lightboxPanel">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="닫기">✕</button>
+    <div class="lightbox__imgwrap" id="lightboxImgWrap">
+      <div class="lightbox__img" id="lightboxImg"></div>
+      <div class="lightbox__img-overlay">
+        <span class="card__tag" id="lightboxTag"></span>
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxTagline"></p>
+      </div>
+    </div>
+    <div class="lightbox__body">
+      <div class="detail-hero__meta" id="lightboxMeta"></div>
+      <p class="card__role-line" id="lightboxRole"></p>
+      <div class="card__stack" id="lightboxStack"></div>
+      <a href="#" class="btn btn--primary" id="lightboxCta">자세히 보기 →</a>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

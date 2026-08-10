@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HajaCheck · 이은석 포트폴리오</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body style="--proj:#18181B">
+
+<nav class="nav">
+  <a href="../index.html#projects" class="nav__back">← 전체 프로젝트</a>
+  <div class="nav__links">
+    <a href="https://github.com/luma-team-ai/HajaCheck" target="_blank" rel="noopener" class="nav__gh" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38l-.01-1.49c-2.01.44-2.43-.97-2.43-.97-.33-.83-.8-1.05-.8-1.05-.66-.45.05-.44.05-.44.73.05 1.11.75 1.11.75.64 1.1 1.68.78 2.09.6.07-.47.25-.78.46-.96-1.6-.18-3.29-.8-3.29-3.56 0-.79.28-1.43.75-1.94-.08-.18-.32-.92.07-1.92 0 0 .61-.2 2 .74a6.9 6.9 0 0 1 3.64 0c1.39-.94 2-.74 2-.74.39 1 .15 1.74.07 1.92.47.51.75 1.15.75 1.94 0 2.77-1.69 3.38-3.3 3.56.26.22.49.66.49 1.33l-.01 1.97c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="hero-motion" aria-hidden="true">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
+      <rect x="45" y="28" width="110" height="152" rx="3" stroke="rgba(255,255,255,.6)" stroke-width="2" class="hm-draw" style="--len:560;--d:.1s"/>
+      <g stroke="rgba(255,255,255,.32)" stroke-width="1.4">
+        <line x1="45" y1="58" x2="155" y2="58" class="hm-fade" style="--d:1s"/>
+        <line x1="45" y1="88" x2="155" y2="88" class="hm-fade" style="--d:1.1s"/>
+        <line x1="45" y1="118" x2="155" y2="118" class="hm-fade" style="--d:1.2s"/>
+        <line x1="45" y1="148" x2="155" y2="148" class="hm-fade" style="--d:1.3s"/>
+        <line x1="77" y1="28" x2="77" y2="180" class="hm-fade" style="--d:1.1s"/>
+        <line x1="100" y1="28" x2="100" y2="180" class="hm-fade" style="--d:1.15s"/>
+        <line x1="123" y1="28" x2="123" y2="180" class="hm-fade" style="--d:1.2s"/>
+      </g>
+      <rect x="45" y="-10" width="110" height="6" fill="rgba(255,255,255,.85)" class="hm-sweep-y" style="--d:1.8s" />
+      <circle cx="87" cy="73" r="5" fill="#F87171" class="hm-pop" style="--d:2.2s"/>
+      <circle cx="138" cy="133" r="5" fill="#FBBF24" class="hm-pop" style="--d:2.7s"/>
+      <circle cx="60" cy="163" r="5" fill="#F87171" class="hm-pop" style="--d:3.1s"/>
+    </svg>
+  </div>
+  <div class="detail-hero__inner">
+    <span class="detail-hero__tag">팀 프로젝트 · AI 시설물 점검</span>
+    <h1 class="detail-hero__title">HajaCheck</h1>
+    <p class="detail-hero__lead">사진을 올리면 하자를 찾고, 등급을 매기고, 보고서 초안까지 쓰는 AI 기반 시설물 외관 하자 점검 플랫폼.</p>
+    <div class="detail-hero__meta">
+      <span class="meta-pill">2026.07 – 08 (4주)</span>
+      <span class="meta-pill">8인 팀 · 메뉴 담당제</span>
+      <span class="meta-pill">담당: 고객지원·실시간 상담</span>
+    </div>
+    <div class="detail-hero__links">
+      <a href="https://hajacheck.luma200ok.com" target="_blank" rel="noopener" class="btn btn--on-hero">라이브 데모 ↗</a>
+      <a href="https://github.com/luma-team-ai/HajaCheck" target="_blank" rel="noopener" class="btn btn--on-hero-ghost">GitHub ↗</a>
+      <a href="../assets/hajacheck/hajacheck-report.pdf" target="_blank" rel="noopener" class="btn btn--on-hero-ghost">Report ↗</a>
+    </div>
+  </div>
+</header>
+
+<main class="detail">
+
+  <div class="detail__block">
+    <h2>개요</h2>
+    <img src="../assets/hajacheck/hero.png" alt="HajaCheck 랜딩 화면" class="shot">
+    <p class="shot-caption">라이브 사이트 랜딩 화면 — "쿨-모노톤 미니멀" 디자인, 장식색 없이 흑백 위주</p>
+    <p>건물 외벽·교량 등 시설물 사진을 업로드하면 균열용 U-Net과 면적형 손상(박리박락·철근노출)용 YOLOv8이 하자를 탐지하고, 규칙 기반으로 A~E 등급을 매깁니다. 검수를 거친 결과는 LangChain 기반 LLM이 점검 보고서 초안과 법규 질의응답으로 이어집니다.</p>
+    <p>AI 심화 과정 8인 팀이 "메뉴 담당제"로 진행해, 팀원 각자가 화면·API·AI 연동을 전 계층에 걸쳐 직접 구현했습니다.</p>
+    <img src="../assets/hajacheck/dashboard.png" alt="HajaCheck 대시보드 화면" class="shot" style="margin-top:20px">
+    <p class="shot-caption">로그인 후 대시보드 — 하자 현황·등급 분포 요약</p>
+  </div>
+
+  <div class="detail__block">
+    <h2>담당 역할</h2>
+    <ul class="detail-list">
+      <li><strong>고객지원 개발 · 실시간 상담 오너</strong> — 상담 티켓 생성·배정·상태 전이, 상담원 콘솔과 사용자 채팅 UI를 분리 설계하고 전체 대화 흐름을 구현</li>
+      <li><strong>RAG 챗봇 파이프라인</strong> — 벡터+BM25 하이브리드 검색(RRF) 기반 법규 질의응답 챗봇을 상담 화면에 연동, 출처 인용 답변 UI 구성</li>
+      <li><strong>STOMP 서버·인증·대기열</strong> — WebSocket(STOMP) 기반 실시간 상담 서버 구축, 세션 인증 처리, 상담원 미배정 시 대기열 로직 구현</li>
+      <li><strong>협업 방식</strong> — 8인 팀이 "메뉴 담당제"로 진행해 화면·API·AI 연동을 계층 구분 없이 직접 구현하는 구조에 맞춰 상담 도메인 전체를 엔드투엔드로 책임</li>
+    </ul>
+  </div>
+
+  <div class="detail__block">
+    <h2>핵심 기능</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="f-title">🔍 하자 탐지</div>
+        <div class="f-desc">균열은 U-Net 픽셀 세그멘테이션, 박리박락·철근노출은 YOLOv8n-seg로 유형별 전용 모델 적용</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">🎚️ 등급 산정</div>
+        <div class="f-desc">면적비 + 어두움 총량 2지표 기반 규칙형 A~E 등급, 현장사진 재교정 밴드 적용</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">💬 실시간 상담</div>
+        <div class="f-desc">WebSocket(STOMP) 기반 상담 티켓·배정·대화, 상담원 콘솔 분리</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">🔎 RAG 법규 챗봇</div>
+        <div class="f-desc">벡터+BM25 하이브리드 검색(RRF), 회사 스코프 격리 시맨틱 캐시로 출처 인용 답변</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail__block">
+    <h2>팀 성과</h2>
+    <div class="stat-row">
+      <div class="stat"><div class="s-num">712</div><div class="s-label">32일간 머지된 PR</div></div>
+      <div class="stat"><div class="s-num">4,550</div><div class="s-label">자동화 테스트</div></div>
+      <div class="stat"><div class="s-num">97</div><div class="s-label">API operation</div></div>
+    </div>
+  </div>
+
+  <div class="detail__block">
+    <h2>기술 스택</h2>
+    <div class="detail-table-wrap">
+      <table class="detail-table">
+        <tr><th>영역</th><th>사용 기술</th></tr>
+        <tr><td>백엔드</td><td>Java 17 · Spring Boot 3.3.5(Security · Data JPA · WebSocket) · QueryDSL · Flyway</td></tr>
+        <tr><td>AI 서버</td><td>Python 3.11 · FastAPI · LangChain/LangGraph · PyTorch(CPU)</td></tr>
+        <tr><td>실시간</td><td>WebSocket(STOMP) 기반 상담 서버</td></tr>
+        <tr><td>데이터</td><td>PostgreSQL 16 · Redis 7 · Chroma(임베디드 벡터 DB)</td></tr>
+        <tr><td>프론트</td><td>React 18.3 · Vite 6 · TypeScript 5.7 · Tailwind 4</td></tr>
+        <tr><td>인프라</td><td>OCI(자체 서버) Docker Compose + nginx · GitHub Actions CI</td></tr>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<nav class="detail-nav">
+  <a href="youtube-trend.html" class="detail-nav__side">
+    <span class="detail-nav__label">← 이전 프로젝트</span>
+    <span class="detail-nav__title">유튜브 트렌딩 예측</span>
+  </a>
+  <a href="bookjob.html" class="detail-nav__side next">
+    <span class="detail-nav__label">다음 프로젝트 →</span>
+    <span class="detail-nav__title">bookjob</span>
+  </a>
+</nav>
+
+<footer class="footer">
+  <p>© 2026 이은석. Built with plain HTML/CSS/JS.</p>
+</footer>
+
+</body>
+</html>

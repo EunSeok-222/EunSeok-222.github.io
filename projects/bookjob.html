@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bookjob · 이은석 포트폴리오</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body style="--proj:#EC4899">
+
+<nav class="nav">
+  <a href="../index.html#projects" class="nav__back">← 전체 프로젝트</a>
+  <div class="nav__links">
+    <a href="https://github.com/EunSeok-222/bookjob" target="_blank" rel="noopener" class="nav__gh" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.08.55-.17.55-.38l-.01-1.49c-2.01.44-2.43-.97-2.43-.97-.33-.83-.8-1.05-.8-1.05-.66-.45.05-.44.05-.44.73.05 1.11.75 1.11.75.64 1.1 1.68.78 2.09.6.07-.47.25-.78.46-.96-1.6-.18-3.29-.8-3.29-3.56 0-.79.28-1.43.75-1.94-.08-.18-.32-.92.07-1.92 0 0 .61-.2 2 .74a6.9 6.9 0 0 1 3.64 0c1.39-.94 2-.74 2-.74.39 1 .15 1.74.07 1.92.47.51.75 1.15.75 1.94 0 2.77-1.69 3.38-3.3 3.56.26.22.49.66.49 1.33l-.01 1.97c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="hero-motion" aria-hidden="true">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
+      <rect x="35" y="45" width="130" height="24" rx="6" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.4)" stroke-width="1.4" class="hm-fade" style="--d:.6s"/>
+      <rect x="35" y="88" width="130" height="24" rx="6" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.4)" stroke-width="1.4" class="hm-fade" style="--d:.8s"/>
+      <rect x="35" y="131" width="130" height="24" rx="6" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.4)" stroke-width="1.4" class="hm-fade" style="--d:1s"/>
+      <g class="hm-mag-sweep" style="--d:1.6s">
+        <circle cx="100" cy="10" r="15" stroke="rgba(255,255,255,.95)" stroke-width="3"/>
+        <line x1="111" y1="21" x2="124" y2="34" stroke="rgba(255,255,255,.95)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle cx="150" cy="100" r="14" fill="#34D399" class="hm-pop" style="--d:2.6s"/>
+      <path d="M144,100 l4,5 l9,-10" stroke="#0A1628" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="hm-pop" style="--d:2.9s"/>
+    </svg>
+  </div>
+  <div class="detail-hero__inner">
+    <span class="detail-hero__tag">팀 프로젝트 · 구인구직 플랫폼</span>
+    <h1 class="detail-hero__title">bookjob</h1>
+    <p class="detail-hero__lead">출판인을 위한 구인·구직 플랫폼. 공고 탐색·지원부터 마이페이지, 커뮤니티, PWA 설치까지 지원합니다.</p>
+    <div class="detail-hero__meta">
+      <span class="meta-pill">2025.03 – 2026.08</span>
+      <span class="meta-pill">2인 팀 · 도메인 담당제</span>
+      <span class="meta-pill">담당: 메인·마이페이지·관리자·PWA</span>
+    </div>
+    <div class="detail-hero__links">
+      <a href="https://www.bookjob.co.kr" target="_blank" rel="noopener" class="btn btn--on-hero">라이브 서비스 ↗</a>
+      <a href="https://github.com/EunSeok-222/bookjob" target="_blank" rel="noopener" class="btn btn--on-hero-ghost">GitHub ↗</a>
+    </div>
+  </div>
+</header>
+
+<main class="detail">
+
+  <div class="detail__block">
+    <h2>개요</h2>
+    <img src="../assets/bookjob/hero.png" alt="bookjob 메인 화면" class="shot">
+    <p class="shot-caption">라이브 서비스(www.bookjob.co.kr) 메인 화면 — 브랜드 컬러인 핑크(#EC4899) 기반</p>
+    <p>출판업계 종사자와 채용 담당자를 연결하는 구인·구직 서비스입니다. 실제 도메인(bookjob.co.kr)으로 운영 중이며, 배포·성능까지 GitHub Actions + Lighthouse CI로 관리합니다.</p>
+    <p>도메인 기반 폴더 구조(`main` · `job` · `Find` · `community` · `my` 등)로 화면·API·상태를 함께 관리하며, 팀원 2명이 도메인을 나눠 담당했습니다.</p>
+  </div>
+
+  <div class="detail__block">
+    <h2>담당 역할</h2>
+    <ul class="detail-list">
+      <li><strong>메인 페이지</strong> — 배너·팝업 등 프로모션 영역 구성, 설문조사 등 이벤트성 배너 노출 로직</li>
+      <li><strong>PWA</strong> — 홈 화면 설치, 매니페스트·아이콘 세트 구성(vite-plugin-pwa + Workbox)</li>
+      <li><strong>마이페이지</strong> — 지원 내역·스크랩 등 개인 활동 관리 화면</li>
+      <li><strong>관리자 페이지</strong> — 공고·콘텐츠 관리 화면</li>
+      <li><strong>로그인/인증</strong> — `ProtectedRoute` 기반 인증 라우트 가드로 비로그인 접근 제어</li>
+    </ul>
+  </div>
+
+  <div class="detail__block">
+    <h2>핵심 기능</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="f-title">📋 채용 공고</div>
+        <div class="f-desc">공고 목록·상세·검색, 지원, 스크랩(찜) 기능</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">🔍 통합 검색</div>
+        <div class="f-desc">출판사·공고 통합 검색(Find 도메인)</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">💬 커뮤니티</div>
+        <div class="f-desc">게시글 작성·상세·댓글</div>
+      </div>
+      <div class="feature-item">
+        <div class="f-title">📊 성능 관리</div>
+        <div class="f-desc">GitHub Actions + Lighthouse CI로 배포 시마다 성능 자동 감사</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail__block">
+    <h2>기술 스택</h2>
+    <div class="detail-table-wrap">
+      <table class="detail-table">
+        <tr><th>영역</th><th>사용 기술</th></tr>
+        <tr><td>프레임워크</td><td>React 19 · Vite 6</td></tr>
+        <tr><td>상태관리</td><td>Zustand · TanStack Query(+Devtools)</td></tr>
+        <tr><td>스타일</td><td>Tailwind CSS 3 · PostCSS</td></tr>
+        <tr><td>폼/에디터</td><td>React Hook Form · TipTap / React-Quill / Draft.js</td></tr>
+        <tr><td>PWA</td><td>vite-plugin-pwa · Workbox</td></tr>
+        <tr><td>테스트/문서화</td><td>Vitest · Testing Library · Storybook 8(+Chromatic)</td></tr>
+        <tr><td>품질/CI</td><td>ESLint · Prettier · GitHub Actions · Lighthouse CI</td></tr>
+        <tr><td>배포</td><td>Vercel</td></tr>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<nav class="detail-nav">
+  <a href="hajacheck.html" class="detail-nav__side">
+    <span class="detail-nav__label">← 이전 프로젝트</span>
+    <span class="detail-nav__title">HajaCheck</span>
+  </a>
+  <a href="dopacheck.html" class="detail-nav__side next">
+    <span class="detail-nav__label">다음 프로젝트 →</span>
+    <span class="detail-nav__title">DopaCheck</span>
+  </a>
+</nav>
+
+<footer class="footer">
+  <p>© 2026 이은석. Built with plain HTML/CSS/JS.</p>
+</footer>
+
+</body>
+</html>
