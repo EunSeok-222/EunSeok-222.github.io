@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="stylesheet" href="../style.css">
-<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<script>(function(){try{if(localStorage.getItem('theme')!=='light')document.documentElement.setAttribute('data-theme','dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 </head>
 <body style="--proj:#EC4899">
 
@@ -178,5 +178,6 @@
   <p>© 2026 이은석. Built with plain HTML/CSS/JS.</p>
 </footer>
 
+<script src="../script.js"></script>
 </body>
 </html>
