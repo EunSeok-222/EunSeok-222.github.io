@@ -63,15 +63,21 @@
   <div class="detail__block">
     <p class="detail__eyebrow">01</p>
     <h2>무엇을 풀려고 했나</h2>
-    <img src="https://github.com/user-attachments/assets/795e7672-fcff-4942-98da-d78592d10fd8" alt="NoteFlow AI 시스템 아키텍처" class="shot">
-    <p class="shot-caption">디스코드 음성 채널 입장부터 노션 기록까지 이어지는 전체 파이프라인</p>
-    <p>"북잡(Bookjob)" 팀은 디스코드 음성 채널로 자주 회의를 했는데, 회의가 끝나면 누군가 녹음을 다시 들으며 회의록을 정리해야 했습니다. 1~2시간짜리 회의를 요약하는 데 드는 시간과, 안부 인사·잡담까지 그대로 옮겨 적는 수작업이 반복적인 부담이었습니다.</p>
+    <img src="https://github.com/user-attachments/assets/ce892e0c-071a-40c7-84a5-28b8c626fb57" alt="NoteFlow AI 동작 데모" class="shot">
+    <p class="shot-caption">회의 종료 커맨드 실행부터 노션 기록까지 실제 동작 모습</p>
+    <p>"북잡(Bookjob)" 팀은 디스코드 음성 채널로 자주 회의를 했는데, 회의가 끝나면 누군가 녹음을 다시 들으며 안부 인사·잡담은 걸러내고 회의 내용만 골라 회의록으로 정리해야 했습니다. 1~2시간짜리 회의를 매번 그렇게 사람이 직접 듣고 추려내는 시간이 반복적인 부담이었습니다.</p>
     <p>NoteFlow AI는 <strong>음성 수집 → 압축 → Gemini 요약(사담 필터링) → 노션 기록</strong>까지 이어지는 파이프라인을 만들어, 회의가 끝나는 순간 핵심 액션 플랜만 남은 회의록이 노션에 자동으로 쌓이게 하는 걸 목표로 했습니다. 디스코드 봇 설계부터 음성 처리, Gemini·Notion API 연동까지 전 과정을 혼자 구현했습니다.</p>
   </div>
 
   <div class="detail__block">
     <p class="detail__eyebrow">02</p>
     <h2>핵심 기능</h2>
+    <div class="shot-grid" style="max-width:340px; margin:0 auto 20px;">
+      <figure>
+        <img src="https://github.com/user-attachments/assets/795e7672-fcff-4942-98da-d78592d10fd8" alt="NoteFlow AI 시스템 아키텍처">
+        <figcaption>디스코드 음성 채널 입장부터 노션 기록까지 이어지는 전체 파이프라인</figcaption>
+      </figure>
+    </div>
     <div class="feature-grid">
       <div class="feature-item">
         <div class="f-title">🎙️ 음성 수집·병합</div>
